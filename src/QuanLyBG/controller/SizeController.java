@@ -1,47 +1,47 @@
-package QuanLyPizza.BUS;
+package QuanLyBG.controller;
 
-import QuanLyPizza.DAO.LoaiDAO;
-import QuanLyPizza.DTO.LoaiSP;
+//import QuanLyBG.DAO.SizeSP;
+import QuanLyBG.model.SizeSP;
 import MyCustom.MyDialog;
 import java.util.ArrayList;
 
-public class LoaiBUS {
+public class SizeController {
 
-    private LoaiDAO loaiDAO = new LoaiDAO();
-    private ArrayList<LoaiSP> listLoai = null;
+    private SizeSP sizeDAO = new SizeSP();
+    private ArrayList<SizeSP> listSize = null;
     
-    public LoaiBUS() {
-        docDanhSachLoai();
+    public SizeController() {
+        docDanhSachSize();
     }
 
-    public void docDanhSachLoai() {
-        this.listLoai = loaiDAO.getDanhSachLoai();
+    public void docDanhSachSize() {
+        this.listSize = sizeDAO.getDanhSachSize();
     }
 
-    public ArrayList<LoaiSP> getDanhSachLoai() {
-        if (listLoai == null) {
-            docDanhSachLoai();
+    public ArrayList<SizeSP> getDanhSachSize() {
+        if (listSize == null) {
+            getDanhSachSize();
         }
-        return this.listLoai;
+        return this.listSize;
     }
 
-    public String getTenLoai(int ma) {
-        for (LoaiSP loai : listLoai) {
-            if (loai.getMaLoai() == ma) {
-                return loai.getMaLoai() + " - " + loai.getTenLoai();
+    public String getTenSize(int ma) {
+        for (SizeSP size : listSize) {
+            if (size.getMaSize() == ma) {
+                return size.getMaSize() + " - " + size.getTenSize();
             }
         }
         return "";
     }
-
-    public boolean themLoai(int maLoai, String tenLoai) {
-        if (tenLoai.trim().equals("")) {
-            new MyDialog("Không được để trống tên loại!", MyDialog.ERROR_DIALOG);
+/*
+    public boolean themSize(int maSize, String tenSize) {
+        if (tenSize.trim().equals("")) {
+            new MyDialog("Không được để trống tên Size!", MyDialog.ERROR_DIALOG);
             return false;
         }
-        maLoai += 1;
-        LoaiSP loai = new LoaiSP(maLoai, tenLoai);
-        if (loaiDAO.themLoai(loai)) {
+        maSize += 1;
+        SizeSP size = new SizeSP(maSize, tenSize);
+        if (sizeDAO.themSize(size)) {
             new MyDialog("Thêm thành công!", MyDialog.SUCCESS_DIALOG);
             return true;
         } else {
@@ -50,28 +50,28 @@ public class LoaiBUS {
         }
     }
 
-    public boolean xoaLoai(String ma) {
+    public boolean xoaSize(String ma) {
         if (ma.trim().equals("")) {
-            new MyDialog("Chưa chọn loại để xoá!", MyDialog.SUCCESS_DIALOG);
+            new MyDialog("Chưa chọn size để xoá!", MyDialog.SUCCESS_DIALOG);
             return false;
         }
-        int maLoai = Integer.parseInt(ma);
-        if (loaiDAO.xoaLoai(maLoai)) {
+        int maSize = Integer.parseInt(ma);
+        if (sizeDAO.xoaSize(maSize)) {
             new MyDialog("Xoá thành công!", MyDialog.SUCCESS_DIALOG);
             return true;
         } else {
-            new MyDialog("Xoá thất bại! Loại có sản phẩm con", MyDialog.ERROR_DIALOG);
+            new MyDialog("Xoá thất bại! Size có sản phẩm con", MyDialog.ERROR_DIALOG);
             return false;
         }
     }
 
-    public boolean suaLoai(String ma, String ten) {
+    public boolean suaSize(String ma, String ten) {
         if (ten.trim().equals("")) {
-            new MyDialog("Không được để trống tên loại!", MyDialog.ERROR_DIALOG);
+            new MyDialog("Không được để trống tên size!", MyDialog.ERROR_DIALOG);
             return false;
         }
-        int maLoai = Integer.parseInt(ma);
-        if (loaiDAO.suaLoai(maLoai, ten)) {
+        int maSize = Integer.parseInt(ma);
+        if (sizeDAO.suaSize(maSize, ten)) {
             new MyDialog("Sửa thành công!", MyDialog.SUCCESS_DIALOG);
             return true;
         } else {
@@ -79,5 +79,5 @@ public class LoaiBUS {
             return false;
         }
     }
-
+*/
 }

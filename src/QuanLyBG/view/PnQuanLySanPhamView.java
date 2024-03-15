@@ -1,15 +1,14 @@
-package QuanLyPizza.GUI;
+package QuanLyBG.view;
 
-import QuanLyPizza.BUS.LoaiBUS;
-import QuanLyPizza.BUS.SanPhamBUS;
-import QuanLyPizza.DTO.LoaiSP;
-import QuanLyPizza.DTO.SanPham;
+import QuanLyBG.controller.SizeController;
+import QuanLyBG.controller.SanPhamController;
+import QuanLyBG.model.SizeSP;
+import QuanLyBG.model.SanPham;
 
 import static Main.Main.changLNF;
 
-import MyCustom.XuLyFileExcel;
 import MyCustom.MyDialog;
-import MyCustom.MyFileChooser;
+//import MyCustom.MyFileChooser;
 import MyCustom.MyTable;
 import MyCustom.TransparentPanel;
 
@@ -40,22 +39,22 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
-public class PnQuanLySanPhamGUI extends JPanel {
+public class PnQuanLySanPhamView extends JPanel {
 
-    public PnQuanLySanPhamGUI() {
+    public PnQuanLySanPhamView() {
         changLNF("Windows");
         addControlsSanPham();
         addEventsSanPham();
     }
 
-    SanPhamBUS spBUS = new SanPhamBUS();
-    LoaiBUS loaiBUS = new LoaiBUS();
+    SanPhamController spBUS = new SanPhamController();
+    SizeController sizeBUS = new SizeController();
     final Color colorPanel = new Color(247, 247, 247);
     MyTable tblSanPham;
     DefaultTableModel dtmSanPham;
     JTextField txtMa, txtTen, txtsoLuong, txtdonViTinh, txtdonGia, txtTimKiem;
-    JComboBox<String> cmbLoai;
-    JButton btnThem, btnSua, btnXoa, btnTim, btnChonAnh, btnReset, btnXuatExcel, btnNhapExcel;
+    JComboBox<String> cmbSize;
+    JButton btnThem, btnSua, btnXoa, btnTim, btnChonAnh, btnReset;//, btnXuatExcel, btnNhapExcel;
     JLabel lblAnhSP;
 
     private void addControlsSanPham() {
@@ -87,7 +86,7 @@ public class PnQuanLySanPhamGUI extends JPanel {
 
         lblMa = new JLabel("Mã SP");
         lblTen = new JLabel("Tên SP");
-        lblLoai = new JLabel("Loại");
+        lblLoai = new JLabel("Size");
         lblSoLuong = new JLabel("Số lượng");
         lblDonViTinh = new JLabel("Đơn vị tính");
         lblDonGia = new JLabel("Đơn giá");
@@ -95,7 +94,7 @@ public class PnQuanLySanPhamGUI extends JPanel {
         txtMa = new JTextField(15);
         txtMa.setEditable(false);
         txtTen = new JTextField(15);
-        cmbLoai = new JComboBox<String>();
+        cmbSize = new JComboBox<String>();
         txtsoLuong = new JTextField(15);
         txtdonViTinh = new JTextField(15);
         txtdonGia = new JTextField(15);
@@ -116,10 +115,10 @@ public class PnQuanLySanPhamGUI extends JPanel {
 
         JPanel pnLoai = new TransparentPanel();
         lblLoai.setFont(font);
-        cmbLoai.setFont(font);
-        cmbLoai.setPreferredSize(txtMa.getPreferredSize());
+        cmbSize.setFont(font);
+        cmbSize.setPreferredSize(txtMa.getPreferredSize());
         pnLoai.add(lblLoai);
-        pnLoai.add(cmbLoai);
+        pnLoai.add(cmbSize);
         pnTextField.add(pnLoai);
 
         JPanel pnSoLuong = new TransparentPanel();
@@ -154,19 +153,19 @@ public class PnQuanLySanPhamGUI extends JPanel {
         pnThongTin.add(pnTextField);
 
         //=================PANEL ẢNH==========
-        JPanel pnAnh = new TransparentPanel();
+        /*JPanel pnAnh = new TransparentPanel();
         pnAnh.setLayout(new BoxLayout(pnAnh, BoxLayout.Y_AXIS));
 
         JPanel pnChuaAnh = new TransparentPanel();
         pnChuaAnh.setPreferredSize(new Dimension((int) pnAnh.getPreferredSize().getWidth(), 250));
         lblAnhSP = new JLabel();
         lblAnhSP.setPreferredSize(new Dimension(200, 200));
-        lblAnhSP.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-        lblAnhSP.setIcon(getAnhSP(""));
-        pnChuaAnh.add(lblAnhSP);
-        pnAnh.add(pnChuaAnh);
+        lblAnhSP.setBorder(BorderFactory.createLineBorder(Color.GRAY));*/
+      //  lblAnhSP.setIcon(getAnhSP(""));
+       // pnChuaAnh.add(lblAnhSP);
+       // pnAnh.add(pnChuaAnh);
 
-        JPanel pnButtonAnh = new TransparentPanel();
+       /* JPanel pnButtonAnh = new TransparentPanel();
         pnButtonAnh.setPreferredSize(new Dimension(
                 (int) pnChuaAnh.getPreferredSize().getHeight(), 40));
         btnChonAnh = new JButton("Chọn ảnh");
@@ -174,7 +173,7 @@ public class PnQuanLySanPhamGUI extends JPanel {
         pnButtonAnh.add(btnChonAnh);
         pnChuaAnh.add(pnButtonAnh);
 
-        pnThongTin.add(pnAnh);
+        pnThongTin.add(pnAnh);*/
         this.add(pnThongTin);
 
         JPanel pnButton = new TransparentPanel();
@@ -183,23 +182,23 @@ public class PnQuanLySanPhamGUI extends JPanel {
         btnSua = new JButton("Lưu");
         btnXoa = new JButton("Xoá");
         btnTim = new JButton("Tìm kiếm");
-        btnXuatExcel = new JButton("Xuất");
-        btnNhapExcel = new JButton("Nhập");
+        //btnXuatExcel = new JButton("Xuất");
+        //btnNhapExcel = new JButton("Nhập");
 
         Font fontButton = new Font("Tahoma", Font.PLAIN, 16);
         btnThem.setFont(fontButton);
         btnSua.setFont(fontButton);
         btnXoa.setFont(fontButton);
         btnTim.setFont(fontButton);
-        btnXuatExcel.setFont(fontButton);
-        btnNhapExcel.setFont(fontButton);
+       // btnXuatExcel.setFont(fontButton);
+       // btnNhapExcel.setFont(fontButton);
 
         btnThem.setIcon(new ImageIcon("image/add-icon.png"));
         btnSua.setIcon(new ImageIcon("image/Pencil-icon.png"));
         btnXoa.setIcon(new ImageIcon("image/delete-icon.png"));
         btnTim.setIcon(new ImageIcon("image/Search-icon.png"));
-        btnXuatExcel.setIcon(new ImageIcon("image/excel-icon.png"));
-        btnNhapExcel.setIcon(new ImageIcon("image/excel-icon.png"));
+       // btnXuatExcel.setIcon(new ImageIcon("image/excel-icon.png"));
+       // btnNhapExcel.setIcon(new ImageIcon("image/excel-icon.png"));
 
         JPanel pnTimKiem = new TransparentPanel();
         JLabel lblTimKiem = new JLabel("Từ khoá tìm");
@@ -214,16 +213,16 @@ public class PnQuanLySanPhamGUI extends JPanel {
         pnButton.add(btnSua);
         pnButton.add(btnXoa);
         pnButton.add(btnTim);
-        pnButton.add(btnXuatExcel);
-        pnButton.add(btnNhapExcel);
+       // pnButton.add(btnXuatExcel);
+       // pnButton.add(btnNhapExcel);
 
         Dimension btnSize = btnTim.getPreferredSize();
         btnThem.setPreferredSize(btnSize);
         btnSua.setPreferredSize(btnSize);
         btnXoa.setPreferredSize(btnSize);
         btnTim.setPreferredSize(btnSize);
-        btnXuatExcel.setPreferredSize(btnSize);
-        btnNhapExcel.setPreferredSize(btnSize);
+       // btnXuatExcel.setPreferredSize(btnSize);
+       // btnNhapExcel.setPreferredSize(btnSize);
 
         this.add(pnButton);
 
@@ -234,11 +233,11 @@ public class PnQuanLySanPhamGUI extends JPanel {
         dtmSanPham = new DefaultTableModel();
         dtmSanPham.addColumn("Mã SP");
         dtmSanPham.addColumn("Tên SP");
-        dtmSanPham.addColumn("Loại SP");
+        dtmSanPham.addColumn("Size");
         dtmSanPham.addColumn("Đơn giá");
         dtmSanPham.addColumn("Số lượng");
         dtmSanPham.addColumn("Đơn vị tính");
-        dtmSanPham.addColumn("Ảnh");
+       //dtmSanPham.addColumn("Ảnh");
         tblSanPham = new MyTable(dtmSanPham);
 
         tblSanPham.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
@@ -253,14 +252,14 @@ public class PnQuanLySanPhamGUI extends JPanel {
         columnModelBanHang.getColumn(3).setPreferredWidth(85);
         columnModelBanHang.getColumn(4).setPreferredWidth(138);
         columnModelBanHang.getColumn(5).setPreferredWidth(140);
-        columnModelBanHang.getColumn(6).setPreferredWidth(0);
+        //columnModelBanHang.getColumn(6).setPreferredWidth(0);
 
         JScrollPane scrTblSanPham = new JScrollPane(tblSanPham);
         //</editor-fold>
         pnTable.add(scrTblSanPham, BorderLayout.CENTER);
         this.add(pnTable);
 
-        loadDataCmbLoai();
+        loadDataCmbSize();
         loadDataLenBangSanPham();
     }
 
@@ -268,14 +267,14 @@ public class PnQuanLySanPhamGUI extends JPanel {
         btnReset.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                loadAnh("");
+               // loadAnh("");
                 loadDataLenBangSanPham();
                 txtMa.setText("");
                 txtTen.setText("");
                 txtdonGia.setText("");
                 txtdonViTinh.setText("");
                 txtsoLuong.setText("");
-                cmbLoai.setSelectedIndex(0);
+                cmbSize.setSelectedIndex(0);
             }
         });
 
@@ -302,12 +301,12 @@ public class PnQuanLySanPhamGUI extends JPanel {
             }
         });
 
-        cmbLoai.addActionListener(new ActionListener() {
+       /* cmbSize.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                xuLyThemLoai();
+               // xuLyThemLoai();
             }
-        });
+        });*/
 
         btnThem.addActionListener(new ActionListener() {
             @Override
@@ -330,12 +329,12 @@ public class PnQuanLySanPhamGUI extends JPanel {
             }
         });
 
-        btnChonAnh.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                xuLyChonAnh();
-            }
-        });
+       // btnChonAnh.addActionListener(new ActionListener() {
+          // @Override
+         //   public void actionPerformed(ActionEvent e) {
+          //      xuLyChonAnh();
+          //  }
+     //   });
 
         btnTim.addActionListener(new ActionListener() {
             @Override
@@ -350,50 +349,11 @@ public class PnQuanLySanPhamGUI extends JPanel {
                 xuLyTimKiem();
             }
         });
-        btnXuatExcel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                xuLyXuatFileExcel();
-            }
-        });
-        btnNhapExcel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                xuLyNhapFileExcel();
-            }
-        });
     }
 
-    private void xuLyNhapFileExcel() {
-        MyDialog dlg = new MyDialog("Dữ liệu cũ sẽ bị xoá, tiếp tục?", MyDialog.WARNING_DIALOG);
-        if (dlg.getAction() != MyDialog.OK_OPTION) {
-            return;
-        }
-
-        XuLyFileExcel nhapFile = new XuLyFileExcel();
-        nhapFile.nhapExcel(tblSanPham);
-
-        int row = tblSanPham.getRowCount();
-        for (int i = 0; i < row; i++) {
-            String ten = tblSanPham.getValueAt(i, 1) + "";
-            String loai = tblSanPham.getValueAt(i, 2) + "";
-            String donGia = tblSanPham.getValueAt(i, 3) + "";
-            String soLuong = tblSanPham.getValueAt(i, 4) + "";
-            String donViTinh = tblSanPham.getValueAt(i, 5) + "";
-            String anh = tblSanPham.getValueAt(i, 6) + "";
-
-            spBUS.nhapSanPhamTuExcel(ten, loai, soLuong, donViTinh, anh, donGia);
-        }
-    }
-
-    private void xuLyXuatFileExcel() {
-        XuLyFileExcel xuatFile = new XuLyFileExcel();
-        xuatFile.xuatExcel(tblSanPham);
-    }
-
-    private void loadAnh(String anh) {
-        lblAnhSP.setIcon(getAnhSP(anh));
-    }
+   // private void loadAnh(String anh) {
+       // lblAnhSP.setIcon(getAnhSP(anh));
+  //  }
 
     private void xuLyClickTblSanPham() {
         int row = tblSanPham.getSelectedRow();
@@ -404,7 +364,7 @@ public class PnQuanLySanPhamGUI extends JPanel {
             String donGia = tblSanPham.getValueAt(row, 3) + "";
             String soLuong = tblSanPham.getValueAt(row, 4) + "";
             String donViTinh = tblSanPham.getValueAt(row, 5) + "";
-            String anh = tblSanPham.getValueAt(row, 6) + "";
+           // String anh = tblSanPham.getValueAt(row, 6) + "";
 
             txtMa.setText(ma);
             txtTen.setText(ten);
@@ -413,14 +373,15 @@ public class PnQuanLySanPhamGUI extends JPanel {
             txtdonViTinh.setText(donViTinh.replace(",", ""));
 
             int flag = 0;
-            for (int i = 0; i < cmbLoai.getItemCount(); i++) {
-                if (cmbLoai.getItemAt(i).contains(loai)) {
+            for (int i = 0; i < cmbSize.getItemCount(); i++) {
+                if (cmbSize.getItemAt(i).contains(loai)) {
                     flag = i;
                     break;
+                    
                 }
             }
-            cmbLoai.setSelectedIndex(flag);
-            loadAnh("image/SanPham/" + anh);
+            cmbSize.setSelectedIndex(flag);
+           // loadAnh("image/SanPham/" + anh);
         }
     }
 
@@ -436,66 +397,65 @@ public class PnQuanLySanPhamGUI extends JPanel {
             Vector vec = new Vector();
             vec.add(sp.getMaSP());
             vec.add(sp.getTenSP());
-            String tenLoai = loaiBUS.getTenLoai(sp.getMaLoai());
-            vec.add(tenLoai);
+            String tenSize = sizeBUS.getTenSize(sp.getMaSize());
+            vec.add(tenSize);
             vec.add(dcf.format(sp.getDonGia()));
             vec.add(dcf.format(sp.getSoLuong()));
             vec.add(sp.getDonViTinh());
-            vec.add(sp.getHinhAnh());
+           // vec.add(sp.getHinhAnh());
             dtmSanPham.addRow(vec);
         }
     }
 
-    private void loadDataCmbLoai() {
-        cmbLoai.removeAllItems();
+    private void loadDataCmbSize() {
+        cmbSize.removeAllItems();
 
-        ArrayList<LoaiSP> dsl = loaiBUS.getDanhSachLoai();
-        cmbLoai.addItem("0 - Chọn loại");
-        for (LoaiSP loai : dsl) {
-            cmbLoai.addItem(loai.getMaLoai() + " - " + loai.getTenLoai());
+        ArrayList<SizeSP> dss = sizeBUS.getDanhSachSize();
+        cmbSize.addItem("0 - Chọn Size");
+        for (SizeSP size : dss) {
+            cmbSize.addItem(size.getMaSize() + " - " + size.getTenSize());
         }
-        cmbLoai.addItem("Khác...");
+        //cmbSize.addItem("Khác...");
     }
 
-    private void xuLyThemLoai() {
-        int x = cmbLoai.getSelectedIndex();
-        if (x == cmbLoai.getItemCount() - 1) {
-            DlgQuanLyLoai loaiGUI = new DlgQuanLyLoai();
+    /*private void xuLyThemLoai() {
+        int x = cmbSize.getSelectedIndex();
+        if (x == cmbSize.getItemCount() - 1) {
+            DlgQuanLySize loaiGUI = new DlgQuanLySize();
             loaiGUI.setVisible(true);
-            loadDataCmbLoai();
+            loadDataCmbSize();
         }
     }
-
+*/
     private void xuLyThemSanPham() {
-        String anh = fileAnhSP.getName();
-        System.out.println(fileAnhSP.getName());
+       // String anh = fileAnhSP.getName();
+       // System.out.println(fileAnhSP.getName());
         boolean flag = spBUS.themSanPham(txtTen.getText(),
-                cmbLoai.getSelectedItem() + "",
+                cmbSize.getSelectedItem() + "",
                 txtsoLuong.getText(),
                 txtdonViTinh.getText(),
-                anh,
+              //  anh,
                 txtdonGia.getText());
         spBUS.docListSanPham();
         loadDataLenBangSanPham();
-        luuFileAnh();
+      
     }
-
-    File fileAnhSP;
+   // File fileAnhSP;
 
     private void xuLySuaSanPham() {
-        String anh = fileAnhSP.getName();
+        //String anh = fileAnhSP.getName();
         boolean flag = spBUS.suaSanPham(txtMa.getText(),
                 txtTen.getText(),
-                cmbLoai.getSelectedItem() + "",
+                cmbSize.getSelectedItem() + "",
                 txtsoLuong.getText(),
                 txtdonViTinh.getText(),
-                anh,
+               // anh,
                 txtdonGia.getText());
         spBUS.docListSanPham();
         loadDataLenBangSanPham();
-        luuFileAnh();
+        
     }
-
+    
     private void xuLyXoaSanPham() {
         MyDialog dlg = new MyDialog("Bạn có chắc chắn muốn xoá?", MyDialog.WARNING_DIALOG);
         if (dlg.OK_OPTION == dlg.getAction()) {
@@ -506,7 +466,7 @@ public class PnQuanLySanPhamGUI extends JPanel {
         }
     }
 
-    private void luuFileAnh() {
+   /* private void luuFileAnh() {
         BufferedImage bImage = null;
         try {
             File initialImage = new File(fileAnhSP.getPath());
@@ -557,7 +517,7 @@ public class PnQuanLySanPhamGUI extends JPanel {
 
         return null;
     }
-
+*/
     private void xuLyTimKiem() {
         String ten = txtTimKiem.getText().toLowerCase();
         dtmSanPham.setRowCount(0);
@@ -568,12 +528,12 @@ public class PnQuanLySanPhamGUI extends JPanel {
             Vector vec = new Vector();
             vec.add(sp.getMaSP());
             vec.add(sp.getTenSP());
-            String tenLoai = loaiBUS.getTenLoai(sp.getMaLoai());
-            vec.add(tenLoai);
+            String tenSize = sizeBUS.getTenSize(sp.getMaSize());
+            vec.add(tenSize);
             vec.add(dcf.format(sp.getDonGia()));
             vec.add(dcf.format(sp.getSoLuong()));
             vec.add(sp.getDonViTinh());
-            vec.add(sp.getHinhAnh());
+          //  vec.add(sp.getHinhAnh());
             dtmSanPham.addRow(vec);
         }
         MyDialog dlg = new MyDialog("Số kết quả tìm được: " + dssp.size(), MyDialog.INFO_DIALOG);

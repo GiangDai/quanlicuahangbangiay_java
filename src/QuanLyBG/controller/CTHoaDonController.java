@@ -1,18 +1,18 @@
-package QuanLyPizza.BUS;
+package QuanLyBG.controller;
 
-import QuanLyPizza.DAO.CTHoaDonDAO;
-import QuanLyPizza.DTO.CTHoaDon;
-import QuanLyPizza.DTO.HoaDon;
+//import QuanLyBG.DAO.CTHoaDonDAO;
+import QuanLyBG.model.CTHoaDon;
+import QuanLyBG.model.HoaDon;
 
 import java.util.ArrayList;
 
-public class CTHoaDonBUS {
+public class CTHoaDonController {
 
     private ArrayList<CTHoaDon> listCTHoaDon;
-    private CTHoaDonDAO ctHDDAO = new CTHoaDonDAO();
-    private HoaDonBUS hdBUS = new HoaDonBUS();
+    private CTHoaDon ctHDDAO = new CTHoaDon();
+    private HoaDonController hdBUS = new HoaDonController();
 
-    public CTHoaDonBUS() {
+    public CTHoaDonController() {
         docListCTHoaDon();
     }
 

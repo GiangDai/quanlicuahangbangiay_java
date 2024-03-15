@@ -1,16 +1,16 @@
-package QuanLyPizza.BUS;
+package QuanLyBG.controller;
 
-import QuanLyPizza.DAO.KhachHangDAO;
-import QuanLyPizza.DTO.KhachHang;
+
+import QuanLyBG.model.KhachHang;
 import MyCustom.MyDialog;
 
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class KhachHangBUS {
+public class KhachHangController {
 
     private ArrayList<KhachHang> listKhachHang = null;
-    private KhachHangDAO khachHangDAO = new KhachHangDAO();
+    private KhachHang khachHangDAO = new KhachHang();
 
     public void docDanhSach() {
         this.listKhachHang = khachHangDAO.getListKhachHang();
@@ -29,13 +29,13 @@ public class KhachHangBUS {
             ArrayList<KhachHang> dskh = new ArrayList<>();
             txtMin = txtMin.replace(",", "");
             txtMax = txtMax.replace(",", "");
-            int min = Integer.parseInt(txtMin);
-            int max = Integer.parseInt(txtMax);
-            for (KhachHang kh : listKhachHang) {
-                if (kh.getTongChiTieu() >= min && kh.getTongChiTieu() <= max) {
-                    dskh.add(kh);
-                }
-            }
+            //int min = Integer.parseInt(txtMin);
+            //int max = Integer.parseInt(txtMax);
+            //for (KhachHang kh : listKhachHang) {
+            //    if (kh.getTongChiTieu() >= min && kh.getTongChiTieu() <= max) {
+            //        dskh.add(kh);
+            //    }
+           // }
             return dskh;
         } catch (Exception e) {
             new MyDialog("Hãy nhập giá trị nguyên phù hợp!", MyDialog.ERROR_DIALOG);
@@ -70,7 +70,7 @@ public class KhachHangBUS {
         kh.setHo(ho);
         kh.setTen(ten);
         kh.setGioiTinh(gioiTinh);
-        kh.setTongChiTieu(0);
+        //kh.setTongChiTieu(0);
         boolean flag = khachHangDAO.addKhachHang(kh);
         if (flag) {
             new MyDialog("Thêm thành công!", MyDialog.SUCCESS_DIALOG);

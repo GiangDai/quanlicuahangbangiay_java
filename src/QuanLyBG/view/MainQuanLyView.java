@@ -1,20 +1,20 @@
-package QuanLyPizza.GUI;
+package QuanLyBG.view;
 
-import QuanLyPizza.BUS.PhanQuyenBUS;
-import QuanLyPizza.DTO.PhanQuyen;
-
+/*import QuanLyBG.BUS.PhanQuyenBUS;
+import QuanLyBG.DTO.PhanQuyen;
+*/
 
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 
-public class MainQuanLyGUI extends JFrame {
+public class MainQuanLyView extends JFrame {
 
-    public MainQuanLyGUI() {
-        this.setTitle("Phần mềm quản lý cửa hàng pizza");
-        this.setSize(1280, 900);
-        Image icon = Toolkit.getDefaultToolkit().getImage("image/ManagerUI/icon-app.png");
+    public MainQuanLyView() {
+        this.setTitle("Phần mềm quản lý cửa hàng bán giày");
+        this.setSize(1280, 720);
+        Image icon = Toolkit.getDefaultToolkit().getImage("image/ManagerUI/icon.png");
         this.setIconImage(icon);
         addControls();
         addEvents();
@@ -28,16 +28,16 @@ public class MainQuanLyGUI extends JFrame {
     }
 
     JLabel btnDoiMatKhau;
-    JPanel pnTitle, pnMenuLeft, pnCard, pnBanHang, pnKhuyenMai, pnNhapHang, pnSanPham, pnNhanVien, pnKhachHang, pnThongKe;
-    PnQuanLyBanHangGUI banHangPanel;
-    PnQuanLyKhuyenMaiGUI khuyenMaiPanel;
-    PnQuanLyNhapHangGUI nhapHangPanel;
-    PnQuanLySanPhamGUI sanPhamPanel;
-    PnQuanLyNhanVienGUI nhanVienPanel;
-    PnQuanLyKhachHangGUI khachHangPanel;
-    PnQuanLyThongKeGUI thongKePanel;
+    JPanel pnTitle, pnMenuLeft, pnCard, pnBanHang,/*pnKhuyenMai ,*/ pnNhapHang, pnSanPham, /*pnNhanVien,*/ pnKhachHang, pnThongKe;
+    PnQuanLyBanHangView banHangPanel;
+   // PnQuanLyKhuyenMaiGUI khuyenMaiPanel;
+    PnQuanLyNhapHangView nhapHangPanel;
+    PnQuanLySanPhamView sanPhamPanel;
+    //PnQuanLyNhanVienGUI nhanVienPanel;
+    PnQuanLyKhachHangView khachHangPanel;
+    PnQuanLyThongKeView thongKePanel;
 
-    JLabel btnClose, btnMinimize, lblBanHang, lblKhuyenMai, lblNhapHang, lblSanPham, lblNhanVien, lblKhachHang, lblThongKe;
+    JLabel btnClose, btnMinimize, lblBanHang, /*lblKhuyenMai,*/ lblNhapHang, lblSanPham, /*lblNhanVien,*/ lblKhachHang, lblThongKe;
     final Color clLeftItem = new Color(63, 74, 89);
     final Color clLeftItemHover = new Color(72, 88, 107);
     final Color clLeftItemSelected = new Color(51, 202, 187);
@@ -62,20 +62,24 @@ public class MainQuanLyGUI extends JFrame {
         pnTitle.setPreferredSize(new Dimension(width, 46));
         pnTitle.setBackground(new Color(242, 153, 74));
 
-        btnDoiMatKhau = new JLabel(new ImageIcon("image/ManagerUI/icons8_gear_46px.png"));
+        /*btnDoiMatKhau = new JLabel(new ImageIcon("image/ManagerUI/icons8_gear_46px.png"));
         btnDoiMatKhau.setToolTipText("Đổi mật khẩu");
         btnDoiMatKhau.setBounds(0, 0, 46, 46);
         btnDoiMatKhau.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        pnTitle.add(btnDoiMatKhau);
+        pnTitle.add(btnDoiMatKhau);*/
 
-        JLabel lblTitleText = new JLabel(new ImageIcon("image/ManagerUI/title-text.png"));
+        JLabel lblTitleText = new JLabel("QUẢN LÝ CỬA HÀNG BÁN GIÀY");
         lblTitleText.setBounds(width / 2 - 428 / 2, 3, 428, 38);
+        Font font = new Font("Arial", Font.BOLD, 25);
+        lblTitleText.setFont(font);
         pnTitle.add(lblTitleText);
+        lblTitleText.setHorizontalAlignment(SwingConstants.CENTER);
+
 
         btnMinimize = new JLabel(new ImageIcon("image/ManagerUI/btn-minimize.png"));
         btnMinimize.setBounds(width - 85, 5, 38, 35);
         btnMinimize.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        pnTitle.add(btnMinimize);
+       // pnTitle.add(btnMinimize);
 
         btnClose = new JLabel(new ImageIcon("image/ManagerUI/btn-close.png"));
         btnClose.setBounds(width - 40, 5, 35, 35);
@@ -93,23 +97,23 @@ public class MainQuanLyGUI extends JFrame {
         pnMenuLeft.setBackground(clLeftItem);
         pnMenuLeft.setLayout(new BoxLayout(pnMenuLeft, BoxLayout.Y_AXIS));
 
-        JLabel lblAvatar = new JLabel(new ImageIcon("image/ManagerUI/avatar.png"), JLabel.CENTER);
+        JLabel lblAvatar = new JLabel(new ImageIcon("image/ManagerUI/icon.png"), JLabel.CENTER);
         lblAvatar.setPreferredSize(new Dimension(250, 210));
         pnMenuLeft.add(lblAvatar);
 
         lblBanHang = new JLabel(new ImageIcon("image/ManagerUI/lblBanHang.png"));
-        lblKhuyenMai = new JLabel(new ImageIcon("image/ManagerUI/lblKhuyenMai.png"));
+     //   lblKhuyenMai = new JLabel(new ImageIcon("image/ManagerUI/lblKhuyenMai.png"));
         lblNhapHang = new JLabel(new ImageIcon("image/ManagerUI/lblNhapHang.png"));
-        lblSanPham = new JLabel(new ImageIcon("image/ManagerUI/lblSanPham.png"));
-        lblNhanVien = new JLabel(new ImageIcon("image/ManagerUI/lblNhanVien.png"));
+        lblSanPham = new JLabel(new ImageIcon("image/ManagerUI/bt.png"));
+      //  lblNhanVien = new JLabel(new ImageIcon("image/ManagerUI/lblNhanVien.png"));
         lblKhachHang = new JLabel(new ImageIcon("image/ManagerUI/lblKhachHang.png"));
         lblThongKe = new JLabel(new ImageIcon("image/ManagerUI/lblThongKe.png"));
 
         listMenuLeft = new ArrayList<>();
         listMenuLeft.add(lblBanHang);
-        listMenuLeft.add(lblKhuyenMai);
+      //  listMenuLeft.add(lblKhuyenMai);
         listMenuLeft.add(lblSanPham);
-        listMenuLeft.add(lblNhanVien);
+      //  listMenuLeft.add(lblNhanVien);
         listMenuLeft.add(lblKhachHang);
         listMenuLeft.add(lblNhapHang);
         listMenuLeft.add(lblThongKe);
@@ -125,7 +129,7 @@ public class MainQuanLyGUI extends JFrame {
 
         lblBanHang.setBackground(clLeftItemSelected);
         lblBanHang.setVisible(true);
-        lblKhuyenMai.setVisible(true);
+       // lblKhuyenMai.setVisible(true);
 
         pnMain.add(pnMenuLeft, BorderLayout.WEST);
 
@@ -137,67 +141,67 @@ public class MainQuanLyGUI extends JFrame {
         pnCard = new JPanel(cardMenuLeftGroup);
 
         pnBanHang = new JPanel();
-        pnKhuyenMai = new JPanel();
+       // pnKhuyenMai = new JPanel();
         pnNhapHang = new JPanel();
         pnSanPham = new JPanel();
-        pnNhanVien = new JPanel();
+       // pnNhanVien = new JPanel();
         pnKhachHang = new JPanel();
         pnThongKe = new JPanel();
 
         pnCard.add(pnBanHang, "1");
-        pnCard.add(pnKhuyenMai, "2");
+       // pnCard.add(pnKhuyenMai, "2");
         pnCard.add(pnNhapHang, "3");
         pnCard.add(pnSanPham, "4");
-        pnCard.add(pnNhanVien, "5");
+       // pnCard.add(pnNhanVien, "5");
         pnCard.add(pnKhachHang, "6");
         pnCard.add(pnThongKe, "7");
 
         //==========ADD PANEL BÁN HÀNG + KHUYẾN MÃI (Ko phân quyền)==========
-        banHangPanel = new PnQuanLyBanHangGUI();
+        banHangPanel = new PnQuanLyBanHangView();
         pnBanHang.setLayout(new BorderLayout());
         pnBanHang.add(banHangPanel, BorderLayout.CENTER);
 
-        khuyenMaiPanel = new PnQuanLyKhuyenMaiGUI();
+      /*  khuyenMaiPanel = new PnQuanLyKhuyenMaiGUI();
         pnKhuyenMai.setLayout(new BorderLayout());
         pnKhuyenMai.add(khuyenMaiPanel, BorderLayout.CENTER);
-
+*/
         //======XỬ LÝ PHÂN QUYỀN=======
-        PhanQuyen quyen = PhanQuyenBUS.quyenTK;
+        //PhanQuyen quyen = PhanQuyenBUS.quyenTK;
 
-        if (quyen.getNhapHang() == 1) {
-            nhapHangPanel = new PnQuanLyNhapHangGUI();
+       // if (quyen.getNhapHang() == 1) {
+            nhapHangPanel = new PnQuanLyNhapHangView();
             pnNhapHang.setLayout(new BorderLayout());
             pnNhapHang.add(nhapHangPanel, BorderLayout.CENTER);
             lblNhapHang.setVisible(true);
-        }
+       // }
 
-        if (quyen.getQlSanPham() == 1) {
-            sanPhamPanel = new PnQuanLySanPhamGUI();
+        //if (quyen.getQlSanPham() == 1) {
+            sanPhamPanel = new PnQuanLySanPhamView();
             pnSanPham.setLayout(new BorderLayout());
             pnSanPham.add(sanPhamPanel, BorderLayout.CENTER);
             lblSanPham.setVisible(true);
-        }
+       // }
 
-        if (quyen.getQlNhanVien() == 1) {
+       /* if (quyen.getQlNhanVien() == 1) {
             nhanVienPanel = new PnQuanLyNhanVienGUI();
             pnNhanVien.setLayout(new BorderLayout());
             pnNhanVien.add(nhanVienPanel, BorderLayout.CENTER);
             lblNhanVien.setVisible(true);
-        }
+        }*/
 
-        if (quyen.getQlKhachHang() == 1) {
-            khachHangPanel = new PnQuanLyKhachHangGUI();
+        //if (quyen.getQlKhachHang() == 1) {
+            khachHangPanel = new PnQuanLyKhachHangView();
             pnKhachHang.setLayout(new BorderLayout());
             pnKhachHang.add(khachHangPanel, BorderLayout.CENTER);
             lblKhachHang.setVisible(true);
-        }
+       // }
 
-        if (quyen.getThongKe() == 1) {
-            thongKePanel = new PnQuanLyThongKeGUI();
+        //if (quyen.getThongKe() == 1) {
+            thongKePanel = new PnQuanLyThongKeView();
             pnThongKe.setLayout(new BorderLayout());
             pnThongKe.add(thongKePanel, BorderLayout.CENTER);
             lblThongKe.setVisible(true);
-        }
+        //}
         pnMain.add(pnCard);
         /*
         ============================================================
@@ -223,7 +227,7 @@ public class MainQuanLyGUI extends JFrame {
             }
         });
 
-        btnDoiMatKhau.addMouseListener(new MouseListener() {
+/*        btnDoiMatKhau.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 new DlgDoiMatKhau().setVisible(true);
@@ -249,7 +253,7 @@ public class MainQuanLyGUI extends JFrame {
                 btnDoiMatKhau.setBackground(new Color(0, 0, 0, 0));
             }
         });
-
+*/
         btnMinimize.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -313,15 +317,15 @@ public class MainQuanLyGUI extends JFrame {
                     String cardName = "";
                     if (lbl == lblBanHang) {
                         cardName = "1";
-                    } else if (lbl == lblKhuyenMai) {
+                    } /*else if (lbl == lblKhuyenMai) {
                         cardName = "2";
-                    } else if (lbl == lblNhapHang) {
+                    }*/ else if (lbl == lblNhapHang) {
                         cardName = "3";
                     } else if (lbl == lblSanPham) {
                         cardName = "4";
-                    } else if (lbl == lblNhanVien) {
+                    }/* else if (lbl == lblNhanVien) {
                         cardName = "5";
-                    } else if (lbl == lblKhachHang) {
+                    }*/ else if (lbl == lblKhachHang) {
                         cardName = "6";
                     } else {
                         cardName = "7";

@@ -1,7 +1,7 @@
-package QuanLyPizza.GUI;
+package QuanLyBG.view;
 
-import QuanLyPizza.BUS.KhachHangBUS;
-import QuanLyPizza.DTO.KhachHang;
+import QuanLyBG.controller.KhachHangController;
+import QuanLyBG.model.KhachHang;
 import MyCustom.MyDialog;
 import MyCustom.MyTable;
 import MyCustom.TransparentPanel;
@@ -22,15 +22,15 @@ import java.util.Vector;
 
 import static Main.Main.changLNF;
 
-public class PnQuanLyKhachHangGUI extends JPanel {
+public class PnQuanLyKhachHangView extends JPanel {
 
-    public PnQuanLyKhachHangGUI() {
+    public PnQuanLyKhachHangView() {
         changLNF("Windows");
         addControls();
         addEvents();
     }
 
-    private KhachHangBUS khachHangBUS = new KhachHangBUS();
+    private KhachHangController khachHangBUS = new KhachHangController();
 
     final Color colorPanel = new Color(247, 247, 247);
     JButton btnReset;
@@ -71,25 +71,25 @@ public class PnQuanLyKhachHangGUI extends JPanel {
         JPanel pnTextField = new TransparentPanel();
         pnTextField.setLayout(new BoxLayout(pnTextField, BoxLayout.Y_AXIS));
 
-        JLabel lblMa, lblHo, lblTen, lblGioiTinh, lblTongChiTieu;
+        JLabel lblMa, lblHo, lblTen, lblGioiTinh;//, lblTongChiTieu;
         lblMa = new JLabel("Mã Khách hàng");
         lblHo = new JLabel("Họ đệm");
         lblTen = new JLabel("Tên");
         lblGioiTinh = new JLabel("Giới tính");
-        lblTongChiTieu = new JLabel("Tổng chi tiêu");
+       // lblTongChiTieu = new JLabel("Tổng chi tiêu");
 
         lblMa.setFont(font);
         lblHo.setFont(font);
         lblTen.setFont(font);
         lblGioiTinh.setFont(font);
-        lblTongChiTieu.setFont(font);
+        //lblTongChiTieu.setFont(font);
 
         txtMa = new JTextField(20);
         txtMa.setEditable(false);
         txtHo = new JTextField(20);
         txtTen = new JTextField(20);
-        txtTongChiTieu = new JTextField(20);
-        txtTongChiTieu.setEditable(false);
+        //txtTongChiTieu = new JTextField(20);
+        //txtTongChiTieu.setEditable(false);
         cmbGioiTinh = new JComboBox<>();
         cmbGioiTinh.addItem("Chọn giới tính");
         cmbGioiTinh.addItem("Nam");
@@ -98,7 +98,7 @@ public class PnQuanLyKhachHangGUI extends JPanel {
         txtMa.setFont(font);
         txtHo.setFont(font);
         txtTen.setFont(font);
-        txtTongChiTieu.setFont(font);
+        //txtTongChiTieu.setFont(font);
         cmbGioiTinh.setFont(font);
 
         JPanel pnMa = new TransparentPanel();
@@ -121,17 +121,17 @@ public class PnQuanLyKhachHangGUI extends JPanel {
         pnGioiTinh.add(cmbGioiTinh);
         pnTextField.add(pnGioiTinh);
 
-        JPanel pnTongChiTieu = new TransparentPanel();
+       /* JPanel pnTongChiTieu = new TransparentPanel();
         pnTongChiTieu.add(lblTongChiTieu);
         pnTongChiTieu.add(txtTongChiTieu);
         pnTextField.add(pnTongChiTieu);
-
+*/
         Dimension lblSize = lblMa.getPreferredSize();
         lblMa.setPreferredSize(lblSize);
         lblHo.setPreferredSize(lblSize);
         lblTen.setPreferredSize(lblSize);
         lblGioiTinh.setPreferredSize(lblSize);
-        lblTongChiTieu.setPreferredSize(lblSize);
+       // lblTongChiTieu.setPreferredSize(lblSize);
         cmbGioiTinh.setPreferredSize(txtHo.getPreferredSize());
 
         pnTopKH.add(pnTextField);
@@ -175,7 +175,7 @@ public class PnQuanLyKhachHangGUI extends JPanel {
         pnTimKiem.add(txtTukhoa);
         pnKhachHang.add(pnTimKiem);
 
-        JPanel pnTimGioiHan = new TransparentPanel();
+      /*  JPanel pnTimGioiHan = new TransparentPanel();
         JLabel lblMin = new JLabel("Chi tiêu từ:");
         JLabel lblMax = new JLabel("đến:");
         lblMin.setFont(font);
@@ -193,14 +193,14 @@ public class PnQuanLyKhachHangGUI extends JPanel {
         pnTimGioiHan.add(lblMax);
         pnTimGioiHan.add(txtMaxChiTieu);
         pnTimGioiHan.add(btnTim);
-        pnKhachHang.add(pnTimGioiHan);
+        pnKhachHang.add(pnTimGioiHan);*/
         //=========================TABLE=====================
         dtmKhachHang = new DefaultTableModel();
         dtmKhachHang.addColumn("Mã KH");
         dtmKhachHang.addColumn("Họ đệm");
         dtmKhachHang.addColumn("Tên");
         dtmKhachHang.addColumn("Giới tính");
-        dtmKhachHang.addColumn("Tổng chi tiêu");
+       // dtmKhachHang.addColumn("Tổng chi tiêu");
 
         tblKhachHang = new MyTable(dtmKhachHang);
 
@@ -220,10 +220,10 @@ public class PnQuanLyKhachHangGUI extends JPanel {
                 txtMa.setText("");
                 txtHo.setText("");
                 txtTen.setText("");
-                txtTongChiTieu.setText("");
+                //txtTongChiTieu.setText("");
                 txtTukhoa.setText("");
-                txtMinchiTieu.setText("");
-                txtMaxChiTieu.setText("");
+                //txtMinchiTieu.setText("");
+                //txtMaxChiTieu.setText("");
                 cmbGioiTinh.setSelectedIndex(0);
             }
         });
@@ -268,7 +268,7 @@ public class PnQuanLyKhachHangGUI extends JPanel {
             }
         });
 
-        txtMinchiTieu.addActionListener(new ActionListener() {
+        /*txtMinchiTieu.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 txtMaxChiTieu.requestFocus();
@@ -281,13 +281,13 @@ public class PnQuanLyKhachHangGUI extends JPanel {
                 btnTim.doClick();
             }
         });
-
-        btnTim.addActionListener(new ActionListener() {
+*/
+/*        btnTim.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 xuLyTimKiemTheoKhoang();
             }
-        });
+        });*/
 
         btnThem.addActionListener(new ActionListener() {
             @Override
@@ -326,7 +326,7 @@ public class PnQuanLyKhachHangGUI extends JPanel {
             vec.add(kh.getHo());
             vec.add(kh.getTen());
             vec.add(kh.getGioiTinh());
-            vec.add(dcf.format(kh.getTongChiTieu()));
+           // vec.add(dcf.format(kh.getTongChiTieu()));
             dtmKhachHang.addRow(vec);
         }
     }
@@ -343,12 +343,12 @@ public class PnQuanLyKhachHangGUI extends JPanel {
         }
     }
 
-    private void xuLyTimKiemTheoKhoang() {
+    /*private void xuLyTimKiemTheoKhoang() {
         ArrayList<KhachHang> dskh = khachHangBUS.timKiemKhachHang(txtMinchiTieu.getText(), txtMaxChiTieu.getText());
         if (dskh == null)
             return;
         loadDataLenTableKhachHang(dskh);
-    }
+    }*/
 
     private void xuLyLiveSearch() {
         ArrayList<KhachHang> dskh = khachHangBUS.timKiemKhachHang(txtTukhoa.getText());

@@ -1,15 +1,15 @@
-package QuanLyPizza.BUS;
+package QuanLyBG.controller;
 
-import QuanLyPizza.DAO.CTPhieuNhapDAO;
-import QuanLyPizza.DTO.CTPhieuNhap;
+//import QuanLyBG.DAO.CTPhieuNhapDAO;
+import QuanLyBG.model.CTPhieuNhap;
 import java.util.ArrayList;
 
-public class CTPhieuNhapBUS {
+public class CTPhieuNhapController {
 
     private ArrayList<CTPhieuNhap> listPhieuNhap = null;
-    private CTPhieuNhapDAO ctPhieuNhapDAO = new CTPhieuNhapDAO();
+    private CTPhieuNhap ctPhieuNhapDAO = new CTPhieuNhap();
 
-    public CTPhieuNhapBUS() {
+    public CTPhieuNhapController() {
         docDanhSach();
     }
 

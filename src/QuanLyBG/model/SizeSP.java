@@ -1,32 +1,54 @@
-package QuanLyPizza.DTO;
+package QuanLyBG.model;
 
-public class LoaiSP {
+import QuanLyBG.controller.MyConnect;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
-    private int maLoai;
-    private String tenLoai;
+public class SizeSP {
 
-    public LoaiSP() {
+    private int maSize;
+    private String tenSize;
+
+    public SizeSP() {
     }
 
-    public LoaiSP(int maLoai, String tenLoai) {
-        this.maLoai = maLoai;
-        this.tenLoai = tenLoai;
+    public SizeSP(int maSize, String tenSize) {
+        this.maSize = maSize;
+        this.tenSize = tenSize;
     }
 
-    public int getMaLoai() {
-        return maLoai;
+    public int getMaSize() {
+        return maSize;
     }
 
-    public void setMaLoai(int maLoai) {
-        this.maLoai = maLoai;
+    public void setMaSize(int maSize) {
+        this.maSize = maSize;
     }
 
-    public String getTenLoai() {
-        return tenLoai;
+    public String getTenSize() {
+        return tenSize;
     }
 
-    public void setTenLoai(String tenLoai) {
-        this.tenLoai = tenLoai;
+    public void setTenSize(String tenSize) {
+        this.tenSize = tenSize;
     }
-
+    public ArrayList<SizeSP> getDanhSachSize() {
+        try {
+            String sql = "SELECT * FROM Size";
+            PreparedStatement pre = MyConnect.conn.prepareStatement(sql);
+            ResultSet rs = pre.executeQuery();
+            ArrayList<SizeSP> dss = new ArrayList<>();
+            while (rs.next()) {
+                SizeSP size = new SizeSP();
+                size.setMaSize(rs.getInt(1));
+                size.setTenSize(rs.getString(2));
+                dss.add(size);
+            }
+            return dss;
+        } catch (SQLException e) {
+        }
+        return null;
+    }
 }

@@ -1,10 +1,10 @@
-package QuanLyPizza.GUI;
+package QuanLyBG.view;
 
-import QuanLyPizza.BUS.CTPhieuNhapBUS;
-import QuanLyPizza.BUS.PhieuNhapBUS;
-import QuanLyPizza.BUS.SanPhamBUS;
-import QuanLyPizza.DTO.CTPhieuNhap;
-import QuanLyPizza.DTO.SanPham;
+import QuanLyBG.controller.CTPhieuNhapController;
+import QuanLyBG.controller.PhieuNhapController;
+import QuanLyBG.controller.SanPhamController;
+import QuanLyBG.model.CTPhieuNhap;
+import QuanLyBG.model.SanPham;
 import MyCustom.MyDialog;
 import java.awt.print.PrinterException;
 import java.text.DecimalFormat;
@@ -12,20 +12,20 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class XuatPhieuNhapGUI extends javax.swing.JDialog {
+public class XuatPhieuNhapView extends javax.swing.JDialog {
 
     private ArrayList<CTPhieuNhap> listCTPhieuNhap = null;
     private int tongTien;
     private boolean checkNhap = false;
     String nhaCungCap;
-    String nhanVien;
+   // String nhanVien;
 
-    public XuatPhieuNhapGUI(String nhaCungCap, String nhanVien, ArrayList<CTPhieuNhap> listCTPhieuNhap) {
+    public XuatPhieuNhapView(String nhaCungCap/*, String nhanVien*/, ArrayList<CTPhieuNhap> listCTPhieuNhap) {
         Main.Main.changLNF("Windows");
         checkNhap = false;
 
         this.nhaCungCap = nhaCungCap;
-        this.nhanVien = nhanVien;
+        //this.nhanVien = nhanVien;
         this.listCTPhieuNhap = listCTPhieuNhap;
 
         initComponents();
@@ -112,7 +112,7 @@ public class XuatPhieuNhapGUI extends javax.swing.JDialog {
         btnXacNhan.setEnabled(false);
         btnInPhieu.setEnabled(true);
 
-        SanPhamBUS sanPhamBUS = new SanPhamBUS();
+        SanPhamController sanPhamBUS = new SanPhamController();
         ArrayList<SanPham> dssp = sanPhamBUS.getListSanPham();
 
         txtChiTiet.setContentType("text/html");
@@ -121,11 +121,11 @@ public class XuatPhieuNhapGUI extends javax.swing.JDialog {
         DecimalFormat dcf = new DecimalFormat("###,### VND");
 
         // Lưu Phiếu nhập trước để xíu lấy cái mã
-        PhieuNhapBUS phieuNhapBUS = new PhieuNhapBUS();
-        phieuNhapBUS.themPhieuNhap(nhaCungCap, nhanVien, tongTien);
+        PhieuNhapController phieuNhapBUS = new PhieuNhapController();
+        phieuNhapBUS.themPhieuNhap(nhaCungCap/*, nhanVien*/, tongTien);
 
         int maPN = phieuNhapBUS.getLastID();
-        CTPhieuNhapBUS ctPhieuNhapBUS = new CTPhieuNhapBUS();
+        CTPhieuNhapController ctPhieuNhapBUS = new CTPhieuNhapController();
 
         String hd = "<style> "
                 + "table {"
@@ -143,7 +143,7 @@ public class XuatPhieuNhapGUI extends javax.swing.JDialog {
                 + "}"
                 + "</style>";
         hd += "<h1 style='text-align:center;'>CHI TIẾT PHIẾU NHẬP</h1>";
-        hd += "Nhân viên: " + nhanVien + "<br/>";
+       // hd += "Nhân viên: " + nhanVien + "<br/>";
         hd += "Ngày lập: " + dtf.format(now) + "<br/>";
         hd += "Nhà cung cấp: " + nhaCungCap + "<br/>";
         hd += "<div style='text-align:center;'>==========================================</div><br/>";

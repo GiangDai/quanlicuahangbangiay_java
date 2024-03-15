@@ -1,4 +1,4 @@
-package QuanLyPizza.GUI;
+package QuanLyBG.view;
 
 public class DlgLocThongKe extends javax.swing.JDialog {
 

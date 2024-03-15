@@ -1,18 +1,18 @@
-package QuanLyPizza.BUS;
+package QuanLyBG.controller;
 
-import QuanLyPizza.DAO.NhaCungCapDAO;
-import QuanLyPizza.DTO.NhaCungCap;
+
+import QuanLyBG.model.NhaCungCap;
 import MyCustom.MyDialog;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class NhaCungCapBUS {
+public class NhaCungCapController {
 
-    private NhaCungCapDAO nhaCungCapDAO = new NhaCungCapDAO();
+    private NhaCungCap nhaCungCapDAO = new NhaCungCap();
     private ArrayList<NhaCungCap> listNhaCungCap = null;
 
-    public NhaCungCapBUS() {
+    public NhaCungCapController() {
         docDanhSach();
     }
 
@@ -27,7 +27,7 @@ public class NhaCungCapBUS {
         return this.listNhaCungCap;
     }
 
-    public boolean themNhaCungCap(String tenNCC, String diaChi, String dienThoai) {
+    /*public boolean themNhaCungCap(String tenNCC, String diaChi, String dienThoai) {
         if (tenNCC.trim().equals("")) {
             new MyDialog("Hãy nhập tên Nhà cung cấp này!", MyDialog.ERROR_DIALOG);
             return false;
@@ -86,6 +86,6 @@ public class NhaCungCapBUS {
             new MyDialog("Sửa thất bại!", MyDialog.ERROR_DIALOG);
         }
         return flag;
-    }
+    }*/
 
 }

@@ -1,6 +1,6 @@
-package QuanLyPizza.GUI;
+package QuanLyBG.view;
 
-import QuanLyPizza.BUS.KhachHangBUS;
+import QuanLyBG.controller.KhachHangController;
 
 public class DlgThemKhachHang extends javax.swing.JDialog {
 
@@ -118,7 +118,7 @@ public class DlgThemKhachHang extends javax.swing.JDialog {
     public boolean checkThemKhach = false;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         checkThemKhach = false;
-        KhachHangBUS khachHangBUS = new KhachHangBUS();
+        KhachHangController khachHangBUS = new KhachHangController();
         boolean flag = khachHangBUS.themKhachHang(txtHo.getText(), txtTen.getText(), cmbGioiTinh.getSelectedItem() + "");
         checkThemKhach = flag;
         if (flag) {

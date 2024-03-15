@@ -3,19 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package QuanLyPizza.BUS;
+package QuanLyBG.controller;
 
-import QuanLyPizza.DAO.ThongKeDAO;
-import QuanLyPizza.DTO.ThongKe;
+import QuanLyBG.model.ThongKe;
 
 import java.util.ArrayList;
 
 /**
  * @author User
  */
-public class ThongKeBUS {
+public class ThongKeController {
 
-    public ThongKeDAO thongKeDAO = new ThongKeDAO();
+    public ThongKe thongKeDAO = new ThongKe();
     private ArrayList<Double> doanhThuThang;
 
     public ThongKe thongKe(int nam) {

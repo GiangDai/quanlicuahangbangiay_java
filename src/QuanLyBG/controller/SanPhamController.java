@@ -1,17 +1,16 @@
-package QuanLyPizza.BUS;
+package QuanLyBG.controller;
 
-import QuanLyPizza.DAO.SanPhamDAO;
-import QuanLyPizza.DTO.SanPham;
+import QuanLyBG.model.SanPham;
 import MyCustom.MyDialog;
 
 import java.util.ArrayList;
 
-public class SanPhamBUS {
+public class SanPhamController {
 
     private ArrayList<SanPham> listSanPham = null;
-    private SanPhamDAO spDAO = new SanPhamDAO();
+    private SanPham spDAO = new SanPham();
 
-    public SanPhamBUS() {
+    public SanPhamController() {
         docListSanPham();
     }
 
@@ -56,9 +55,9 @@ public class SanPhamBUS {
         if (!ma.trim().equals("")) {
             ArrayList<SanPham> dssp = new ArrayList<>();
             try {
-                int maLoai = Integer.parseInt(ma);
+                int maSize = Integer.parseInt(ma);
                 for (SanPham sp : listSanPham) {
-                    if (sp.getMaLoai() == maLoai) {
+                    if (sp.getMaSize() == maSize) {
                         dssp.add(sp);
                     }
                 }
@@ -69,10 +68,10 @@ public class SanPhamBUS {
         return null;
     }
 
-    public String getAnh(String ma) {
+   /* public String getAnh(String ma) {
         int maSP = Integer.parseInt(ma);
         return spDAO.getAnh(maSP);
-    }
+    }*/
 
     public void capNhatSoLuongSP(int ma, int soLuongMat) {
         spDAO.capNhatSoLuongSP(ma, soLuongMat);
@@ -82,7 +81,7 @@ public class SanPhamBUS {
             String loai,
             String soLuong,
             String donViTinh,
-            String anh,
+            //String anh,
             String donGia) {
 
         if (ten.trim().equals("")) {
@@ -97,20 +96,20 @@ public class SanPhamBUS {
 
         try {
             String[] loaiTmp = loai.split(" - ");
-            int maLoai = Integer.parseInt(loaiTmp[0]);
+            int maSize = Integer.parseInt(loaiTmp[0]);
             int soLuongSP = Integer.parseInt(soLuong);
             donGia = donGia.replace(",", "");
             int donGiaSP = Integer.parseInt(donGia);
-            if (maLoai == 0) {
+            if (maSize == 0) {
                 new MyDialog("Vui lòng chọn Loại sản phẩm!", MyDialog.ERROR_DIALOG);
                 return false;
             }
             SanPham sp = new SanPham();
             sp.setTenSP(ten);
-            sp.setMaLoai(maLoai);
+            sp.setMaSize(maSize);
             sp.setSoLuong(soLuongSP);
             sp.setDonViTinh(donViTinh);
-            sp.setHinhAnh(anh);
+           // sp.setHinhAnh(anh);
             sp.setDonGia(donGiaSP);
 
             if (spDAO.themSanPham(sp)) {
@@ -126,7 +125,7 @@ public class SanPhamBUS {
         return false;
     }
 
-    public boolean nhapSanPhamTuExcel(String ten,
+   /* public boolean nhapSanPhamTuExcel(String ten,
             String loai,
             String soLuong,
             String donViTinh,
@@ -148,12 +147,12 @@ public class SanPhamBUS {
             sp.setHinhAnh(anh);
             sp.setDonGia(donGiaSP);
 
-            spDAO.nhapSanPhamTuExcel(sp);
+            //spDAO.nhapSanPhamTuExcel(sp);
         } catch (Exception e) {
         }
         return false;
     }
-
+*/
     public boolean xoaSanPham(String ma) {
         if (ma.trim().equals("")) {
             new MyDialog("Chưa chọn sản phẩm để xoá!", MyDialog.ERROR_DIALOG);
@@ -172,10 +171,10 @@ public class SanPhamBUS {
 
     public boolean suaSanPham(String ma,
             String ten,
-            String loai,
+            String size,
             String soLuong,
             String donViTinh,
-            String anh,
+           //String anh,
             String donGia) {
 
         try {
@@ -185,12 +184,12 @@ public class SanPhamBUS {
             }
             donGia = donGia.replace(",", "");
             int maSP = Integer.parseInt(ma);
-            String[] loaiTmp = loai.split(" - ");
-            int maLoai = Integer.parseInt(loaiTmp[0]);
+            String[] loaiTmp = size.split(" - ");
+            int maSize = Integer.parseInt(loaiTmp[0]);
             int soLuongSP = Integer.parseInt(soLuong);
             int donGiaSP = Integer.parseInt(donGia);
 
-            if (maLoai == 0) {
+            if (maSize == 0) {
                 new MyDialog("Vui lòng chọn Loại sản phẩm!", MyDialog.ERROR_DIALOG);
                 return false;
             }
@@ -208,10 +207,10 @@ public class SanPhamBUS {
             SanPham sp = new SanPham();
             sp.setMaSP(maSP);
             sp.setTenSP(ten);
-            sp.setMaLoai(maLoai);
+            sp.setMaSize(maSize);
             sp.setSoLuong(soLuongSP);
             sp.setDonViTinh(donViTinh);
-            sp.setHinhAnh(anh);
+            //sp.setHinhAnh(anh);
             sp.setDonGia(donGiaSP);
 
             if (spDAO.suaSanPham(sp)) {

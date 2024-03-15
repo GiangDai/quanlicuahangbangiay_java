@@ -1,4 +1,4 @@
-package QuanLyPizza.DAO;
+package QuanLyBG.controller;
 
 import MyCustom.MyDialog;
 import com.mysql.jdbc.Driver;
@@ -21,7 +21,7 @@ public class MyConnect {
     public MyConnect() {
         docFileText();
 
-        String strConnect = "jdbc:mysql://localhost:8111/quanlypizza";
+        String strConnect = "jdbc:mysql://localhost:8111/qlbg2";
 
         Properties pro = new Properties();
         pro.put("user", userName);

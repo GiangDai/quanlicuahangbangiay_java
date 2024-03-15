@@ -1,18 +1,17 @@
-package QuanLyPizza.BUS;
+package QuanLyBG.controller;
 
 import MyCustom.MyDialog;
-import QuanLyPizza.DAO.PhieuNhapDAO;
-import QuanLyPizza.DTO.PhieuNhap;
+import QuanLyBG.model.PhieuNhap;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class PhieuNhapBUS {
+public class PhieuNhapController {
 
-    private PhieuNhapDAO phieuNhapDAO = new PhieuNhapDAO();
+    private PhieuNhap phieuNhapDAO = new PhieuNhap();
     private ArrayList<PhieuNhap> listPhieuNhap = null;
 
-    public PhieuNhapBUS() {
+    public PhieuNhapController() {
         docDanhSach();
     }
 
@@ -27,16 +26,16 @@ public class PhieuNhapBUS {
         return listPhieuNhap;
     }
 
-    public boolean themPhieuNhap(String nhaCungCap, String nhanVien, int tongTien) {
+    public boolean themPhieuNhap(String nhaCungCap, /*String nhanVien,*/ int tongTien) {
         String[] NCC = nhaCungCap.split(" - ");
-        String[] NV = nhanVien.split(" - ");
+      //  String[] NV = nhanVien.split(" - ");
 
         int maNCC = Integer.parseInt(NCC[0]);
-        int maNV = Integer.parseInt(NV[0]);
+       // int maNV = Integer.parseInt(NV[0]);
 
         PhieuNhap pn = new PhieuNhap();
         pn.setMaNCC(maNCC);
-        pn.setMaNV(maNV);
+       // pn.setMaNV(maNV);
         pn.setTongTien(tongTien);
 
         return phieuNhapDAO.themPhieuNhap(pn);
